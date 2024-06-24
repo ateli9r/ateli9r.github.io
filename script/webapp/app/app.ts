@@ -1,3 +1,4 @@
+import CounterApp from './counter_app'
 import HelloApp from './hello_app'
 import HomeApp from './home_app'
 
@@ -12,6 +13,7 @@ export default class App {
      */
     private hashRoute: any = {
         'home': new HomeApp(),
+        'counter': new CounterApp(),
         'hello': new HelloApp(),
     }
 
