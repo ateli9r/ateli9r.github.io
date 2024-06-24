@@ -9,6 +9,7 @@ describe('HelloModel 테스트', () => {
         expect(model.hello('World')).toBe('Hello, World')
 
         model.setPrefix('Bonjour')
+        expect(model.hello()).toBe('Bonjour')
         expect(model.hello('Mademoiselle')).toBe('Bonjour, Mademoiselle')
     })
 })

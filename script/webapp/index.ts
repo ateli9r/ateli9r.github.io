@@ -1,4 +1,3 @@
-import HelloModel from "./model/hello_model"
+import App from './app/app'
 
-const model = new HelloModel()
-console.log(model.hello('World'))
+App.getInstance()

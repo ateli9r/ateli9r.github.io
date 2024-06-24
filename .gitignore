@@ -1,3 +1,5 @@
 script/**/node_modules
 script/**/package-lock.json
+script/webapp/dist/*
 
+docs/assets/app.js.LICENSE.txt
