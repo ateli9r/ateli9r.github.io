@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-const htmlDir = '../../html'
+const htmlDir = '../../docs'
 
 // Static file middleware
 app.use(express.static(path.join(htmlDir, '')));

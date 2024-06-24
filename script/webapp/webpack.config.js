@@ -14,7 +14,7 @@ module.exports = {
     },
     output: {
         filename: "app.js",
-        path: path.resolve(__dirname, "../../html/assets/"),
+        path: path.resolve(__dirname, "../../docs/assets/"),
         library: "gitPage",
     }
 }
