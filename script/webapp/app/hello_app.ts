@@ -1,31 +1,27 @@
-import { createApp, onMounted, ref } from 'vue'
+import { createApp, onMounted, ref, computed, h } from 'vue'
+import CommonUtil from '../util/common'
 import HelloModel from '../model/hello_model'
 
 export default class HelloApp {
     public app: any
 
-    create(selector: string) {
+    async create(selector: string) {
         const model = new HelloModel()
-        const name = ref('')
 
         this.app = createApp({
-            setup() {
-                return { name }
+            data() {
+                return {
+                    name: '',
+                }
             },
             computed: {
                 message() {
-                    return model.hello(name.value)
+                    return model.hello(this.name)
                 }
             },
-            template: `
-            <div>
-                <span>{{ message }}</span>
-            </div>
-            <div>
-                <input type="text" v-model="name">
-            </div>
-            `
+            template: await CommonUtil.templateHTML('hello'),
         })
+
         this.app.mount(selector)
     }
 }

@@ -1,38 +1,32 @@
-import { createApp, ref } from 'vue'
+import { createApp, ref, h } from 'vue'
+import CommonUtil from '../util/common'
 import CounterModel from '../model/counter_model'
 
 export default class CounterApp {
     public app: any
 
-    create(selector: string) {
+    async create(selector: string) {
         const model = new CounterModel()
 
         this.app = createApp({
-            setup() {
-                const count = ref(0)
-
-                const increase = () => {
-                    model.increase()
-                    count.value = model.getCount()
-                }
-
-                const reset = () => {
-                    model.resetCount()
-                    count.value = model.getCount()
-                }
-
+            data() {
                 return {
-                    count,
-                    increase,
-                    reset,
+                    count: 0,
                 }
             },
-            template: `
-            <span>count: {{ count }}</span><br>
-            <button @click="increase">increase</button>
-            <button @click="reset">reset</button>
-            `
+            methods: {
+                increase() {
+                    model.increase()
+                    this.count = model.getCount()
+                },
+                reset() {
+                    model.resetCount()
+                    this.count = model.getCount()
+                },
+            },
+            template: await CommonUtil.templateHTML('counter'),
         })
+
         this.app.mount(selector)
     }
 }

@@ -1,16 +1,12 @@
 import { createApp, ref } from 'vue'
+import CommonUtil from '../util/common'
 
 export default class HomeApp {
     public app: any
 
-    create(selector: string) {
+    async create(selector: string) {
         this.app = createApp({
-            setup() {
-                return { }
-            },
-            template: `
-            <div>home</div>
-            `
+            template: await CommonUtil.templateHTML('home'),
         })
         this.app.mount(selector)
     }
