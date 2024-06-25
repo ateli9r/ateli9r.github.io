@@ -37,6 +37,10 @@ export default class App {
      * 초기화
      */
     private initialize() {
+        // 마우스 우클릭 금지
+        document.oncontextmenu = () => { return false }
+
+        // 주소변경 감지
         window.addEventListener('hashchange', () => {
             this.route(this.routeKey(window.location.hash) ?? 'home')
         })
