@@ -25,7 +25,7 @@ module.exports = {
         filename: "bundle.[name].js",
         path: path.resolve(__dirname, "../../docs/assets/"),
         library: "gitPage",
-        clean: true,
+        // clean: true,
     },
     optimization: {
         runtimeChunk: 'single',
