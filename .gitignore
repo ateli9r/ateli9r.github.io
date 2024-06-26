@@ -3,3 +3,5 @@ script/**/package-lock.json
 script/webapp/dist/*
 
 docs/assets/bundle.vendors.js.LICENSE.txt
+
+**/.DS_Store
