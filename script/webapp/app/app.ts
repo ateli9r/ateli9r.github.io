@@ -1,6 +1,7 @@
 import CounterApp from './counter_app'
 import HelloApp from './hello_app'
 import HomeApp from './home_app'
+import PortfolioApp from './portfolio_app'
 
 export default class App {
     /**
@@ -11,16 +12,16 @@ export default class App {
     /**
      * 라우팅 맵
      */
-    private hashRoute: any = {
-        'home': new HomeApp(),
-        'counter': new CounterApp(),
-        'hello': new HelloApp(),
-    }
+    // private hashRoute: any = {
+    //     'home': new HomeApp(),
+    //     'counter': new CounterApp(),
+    //     'hello': new HelloApp(),
+    // }
 
     /**
      * 이전 라우팅키
      */
-    private prevHashKey: string | null = null
+    // private prevHashKey: string | null = null
 
     /**
      * 인스턴스 가져오기
@@ -41,10 +42,13 @@ export default class App {
         document.oncontextmenu = () => { return false }
 
         // 주소변경 감지
-        window.addEventListener('hashchange', () => {
-            this.route(this.routeKey(window.location.hash) ?? 'home')
-        })
-        this.route(this.routeKey(window.location.hash) ?? 'home')
+        // window.addEventListener('hashchange', () => {
+        //     this.route(this.routeKey(window.location.hash) ?? 'home')
+        // })
+        // this.route(this.routeKey(window.location.hash) ?? 'home')
+
+        // 홈 컨텐츠 불러오기
+        this.loadHome()
     }
 
     /**
@@ -52,27 +56,40 @@ export default class App {
      * @param locHash 주소 해시값
      * @returns 라우팅키
      */
-    private routeKey(locHash: string): string | null {
-        if (locHash == '') locHash = '#/home'
-        if (locHash.length < 3) return null
-        if (locHash[0] != '#' || locHash[1] != '/') return null
-        return locHash.substring(2).toLowerCase()
-    }
+    // private routeKey(locHash: string): string | null {
+    //     if (locHash == '') locHash = '#/home'
+    //     if (locHash.length < 3) return null
+    //     if (locHash[0] != '#' || locHash[1] != '/') return null
+    //     return locHash.substring(2).toLowerCase()
+    // }
 
     /**
      * 라우팅
      * @param routeKey 라우팅키
      */
-    private route(routeKey: string) {
-        if (this.prevHashKey != null) {
-            const prevCtx = this.hashRoute[this.prevHashKey]
-            prevCtx.app.unmount()
-        }
+    // private route(routeKey: string) {
+    //     if (this.prevHashKey != null) {
+    //         const prevCtx = this.hashRoute[this.prevHashKey]
+    //         prevCtx.app.unmount()
+    //     }
 
-        const ctxApp = this.hashRoute[routeKey]
-        if (ctxApp == null) return
-        ctxApp.create('#app')
+    //     const ctxApp = this.hashRoute[routeKey]
+    //     if (ctxApp == null) return
+    //     ctxApp.create('#app')
 
-        this.prevHashKey = routeKey
+    //     this.prevHashKey = routeKey
+    // }
+
+    /**
+     * 홈 컨텐츠 불러오기
+     */
+    private loadHome() {
+        const home = new HomeApp()
+        home.render('#story')
+        home.render('#skill')
+        home.render('#values')
+
+        const portfolio = new PortfolioApp()
+        portfolio.render('#portfolio')
     }
 }

@@ -1,26 +1,31 @@
 import { createApp, onMounted, ref } from 'vue'
 // import CommonUtil from '../util/common'
-import HomeModel from '../model/home_model'
+// import { marked } from 'marked'
 
-export default class HomeApp {
+export default class PortfolioApp {
+    public app: any
+
+    // async create(selector: string) {
+    //     this.app = createApp({
+    //         template: await CommonUtil.templateHTML('home'),
+    //     })
+    //     this.app.mount(selector)
+    // }
+
     async render(selector: string) {
-        const model = new HomeModel()
-        const contentId = selector.replace(/\#/, '')
-        const content = await model.content(contentId)
-
         const app = createApp({
             setup() {
                 onMounted(() => {
+                    console.log('PortfolioApp > onMounted')
                     const el = document.querySelector(selector)
                     el?.classList.remove('hidden')
                 })
 
                 return {
-                    content,
+
                 }
             }
         })
-        
         app.mount(selector)
     }
 }
