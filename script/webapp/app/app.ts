@@ -1,7 +1,7 @@
 import CounterApp from './counter_app'
 import HelloApp from './hello_app'
 import HomeApp from './home_app'
-import PortfolioApp from './portfolio_app'
+import GalleryApp from './gallery_app'
 
 export default class App {
     /**
@@ -87,9 +87,11 @@ export default class App {
         const home = new HomeApp()
         home.render('#story')
         home.render('#skill')
+        home.render('#service')
         home.render('#values')
 
-        const portfolio = new PortfolioApp()
-        portfolio.render('#portfolio')
+        const gallery = new GalleryApp()
+        gallery.render('#awards')
+        gallery.render('#portfolio')
     }
 }

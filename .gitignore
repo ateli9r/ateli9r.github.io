@@ -2,6 +2,7 @@ script/**/node_modules
 script/**/package-lock.json
 script/webapp/dist/*
 
+docs/trash
 docs/assets/bundle.vendors.js.LICENSE.txt
 
 **/.DS_Store
