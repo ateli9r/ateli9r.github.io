@@ -87,14 +87,10 @@ export default class App {
         const home = new HomeApp()
         home.render('#story')
         home.render('#skill', true)
-        home.render('#service')
+        home.render('#service', true)
         home.render('#values')
 
-        // home.table('#skill', '/contents/home/skill_table.yml')
-        // '/contents/home/skill_table.yml'
-
         const gallery = new GalleryApp()
-        // gallery.render('#awards')
         gallery.render('#portfolio')
     }
 }

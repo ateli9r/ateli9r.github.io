@@ -19,7 +19,7 @@ export default class HomeApp {
             const data = await CommonUtil.readData(path)
             if (data != null) {
                 const doc = CommonUtil.parseYAML(data)
-                attachData = doc.items
+                attachData = doc
             }
         }
 
