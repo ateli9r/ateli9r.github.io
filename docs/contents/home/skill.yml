@@ -1,0 +1,13 @@
+items:
+- customer: '한국광해광업공산'
+  describe: '한국자원정보서비스(KOMIS) 고도화<br><small>(Spring, Selenium)</small>'
+  dates: '2024.04~2024.10'
+- customer: '강원지역산업진흥원'
+  describe: '독거노인 헬스케어 연구과제<br><small>(Spring Boot, PyTorch)</small>'
+  dates: '2021.12~2022.07'
+- customer: '국가정보자원관리원'
+  describe: '지능형 유해트래픽 분석시스템 구축<br><small>(Spring, GoLang, PF_RING)</small>'
+  dates: '2020.04~2021.03'
+- customer: '부산정보통신'
+  describe: '유통,외식 업종 POS 시스템 개발<br><small>(node.js, C#)</small>'
+  dates: '2017.08~2018.06'

@@ -50,7 +50,7 @@
 								</div>
 							</section>
 
-							<section class="panel spotlight large left hidden" id="story">
+							<section class="panel spotlight large right hidden" id="story">
 								<div class="content span-5">
 									<p v-html="content"></p>
 								</div>
@@ -64,14 +64,25 @@
 									<p v-html="content"></p>
 								</div>
 								<div class="inner">
-									<ul class="grid-icons three connected">
-										<li><span class="icon fa-gem"><span class="label">Lorem</span></span></li>
-										<li><span class="icon solid fa-camera-retro"><span class="label">Ipsum</span></span></li>
-										<li><span class="icon solid fa-cog"><span class="label">Dolor</span></span></li>
-										<li><span class="icon solid fa-paper-plane"><span class="label">Sit</span></span></li>
-										<li><span class="icon solid fa-chart-bar"><span class="label">Amet</span></span></li>
-										<li><span class="icon solid fa-code"><span class="label">Nullam</span></span></li>
-									</ul>
+									<h4>최근이력</h4>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>고객사</th>
+													<th>설명</th>
+													<th>기간</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr v-for="item in attachData">
+													<td>{{ item.customer }}</td>
+													<td><div v-html="item.describe"></div></td>
+													<td>{{ item.dates }}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</section>							
 
@@ -81,12 +92,8 @@
 								</div>
 								<div class="inner">
 									<ul class="grid-icons three connected">
-										<li><span class="icon fa-gem"><span class="label">Lorem</span></span></li>
-										<li><span class="icon solid fa-camera-retro"><span class="label">Ipsum</span></span></li>
-										<!-- <li><span class="icon solid fa-cog"><span class="label">Dolor</span></span></li> -->
-										<!-- <li><span class="icon solid fa-paper-plane"><span class="label">Sit</span></span></li> -->
-										<!-- <li><span class="icon solid fa-chart-bar"><span class="label">Amet</span></span></li> -->
-										<!-- <li><span class="icon solid fa-code"><span class="label">Nullam</span></span></li> -->
+										<li><span class="icon fa-gem"><span class="label">Value</span></span></li>
+										<li><span class="icon solid fa-user"><span class="label">Human</span></span></li>
 									</ul>
 								</div>
 							</section>
@@ -100,17 +107,18 @@
 								</div>
 							</section>
 
-							<section class="panel" id="awards">
+							<section class="panel hidden" id="awards">
 								<div class="intro color2">
 									<p v-html="content"></p>
 								</div>
 								<div class="gallery">
-									<div class="group span-3">
-										<a href="https://bit.ly/3XJiM3o" class="image span-1-5" data-position="center"><img src="https://bit.ly/3XJiM3o" alt="" /></a>
+									<a href="https://bit.ly/3XJiM3o" class="image span-2" data-position="center"><img src="https://bit.ly/3XJiM3o" alt="" /></a>
+									<!-- <div class="group span-3">
+										<a href="https://bit.ly/3XJiM3o" class="image span-4" data-position="center"><img src="https://bit.ly/3XJiM3o" alt="" /></a>
 										<a href="/images/gallery/fulls/02.jpg" class="image span-1-5" data-position="center"><img src="/images/gallery/thumbs/02.jpg" alt="" /></a>
 										<a href="/images/gallery/fulls/03.jpg" class="image span-1-5" data-position="center"><img src="/images/gallery/thumbs/03.jpg" alt="" /></a>
 										<a href="/images/gallery/fulls/04.jpg" class="image span-1-5" data-position="center"><img src="/images/gallery/thumbs/04.jpg" alt="" /></a>
-									</div>
+									</div> -->
 								</div>
 							</section>
 
@@ -120,12 +128,13 @@
 								</div>
 								<div class="gallery">
 									<div class="group span-3">
-										<a href="https://ateli9r.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6540005c-fd78-4b4e-8538-d2c125ae74a4%2F%25E1%2584%258F%25E1%2585%25A5%25E1%2586%25B7%25E1%2584%2591%25E1%2585%25A9%25E1%2584%2582%25E1%2585%25A5%25E1%2586%25AB%25E1%2584%2590%25E1%2585%25B3_220812-%25E1%2584%2580%25E1%2585%25A2%25E1%2584%258B%25E1%2585%25AD.drawio.png?table=block&id=e4769246-2b4e-4347-ad00-91aed98c6f34&spaceId=ed9c5b3b-6faf-4ebb-8bd6-99a68480f9f0&width=2000&userId=&cache=v2" class="image span-1-5" data-position="center">
+										<!-- <a href="https://ateli9r.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6540005c-fd78-4b4e-8538-d2c125ae74a4%2F%25E1%2584%258F%25E1%2585%25A5%25E1%2586%25B7%25E1%2584%2591%25E1%2585%25A9%25E1%2584%2582%25E1%2585%25A5%25E1%2586%25AB%25E1%2584%2590%25E1%2585%25B3_220812-%25E1%2584%2580%25E1%2585%25A2%25E1%2584%258B%25E1%2585%25AD.drawio.png?table=block&id=e4769246-2b4e-4347-ad00-91aed98c6f34&spaceId=ed9c5b3b-6faf-4ebb-8bd6-99a68480f9f0&width=2000&userId=&cache=v2" class="image span-1-5" data-position="center">
 											<img src="https://ateli9r.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6540005c-fd78-4b4e-8538-d2c125ae74a4%2F%25E1%2584%258F%25E1%2585%25A5%25E1%2586%25B7%25E1%2584%2591%25E1%2585%25A9%25E1%2584%2582%25E1%2585%25A5%25E1%2586%25AB%25E1%2584%2590%25E1%2585%25B3_220812-%25E1%2584%2580%25E1%2585%25A2%25E1%2584%258B%25E1%2585%25AD.drawio.png?table=block&id=e4769246-2b4e-4347-ad00-91aed98c6f34&spaceId=ed9c5b3b-6faf-4ebb-8bd6-99a68480f9f0&width=2000&userId=&cache=v2" alt="" />
-										</a>
-										<a href="/images/gallery/fulls/02.jpg" class="image filtered span-1-5" data-position="center"><img src="/images/gallery/thumbs/02.jpg" alt="" /></a>
-										<a href="/images/gallery/fulls/03.jpg" class="image filtered span-1-5" data-position="center"><img src="/images/gallery/thumbs/03.jpg" alt="" /></a>
-										<a href="/images/gallery/fulls/04.jpg" class="image filtered span-1-5" data-position="center"><img src="/images/gallery/thumbs/04.jpg" alt="" /></a>
+										</a> -->
+										<a href="#portfolio" class="image filtered span-1-5" data-position="center"><img src="/images/gallery/thumbs/01.jpg" alt="" /></a>
+										<a href="#portfolio" class="image filtered span-1-5" data-position="center"><img src="/images/gallery/thumbs/02.jpg" alt="" /></a>
+										<a href="#portfolio" class="image filtered span-1-5" data-position="center"><img src="/images/gallery/thumbs/03.jpg" alt="" /></a>
+										<a href="#portfolio" class="image filtered span-1-5" data-position="center"><img src="/images/gallery/thumbs/04.jpg" alt="" /></a>
 									</div>
 								</div>
 							</section>

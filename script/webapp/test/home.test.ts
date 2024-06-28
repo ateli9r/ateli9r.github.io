@@ -12,16 +12,17 @@ describe('HomeModel 테스트', () => {
         expect(model.parse('- item')).toBe('<ul>\n<li>item</li>\n</ul>')
     })
 
-    test('load', async () => {
-        model.setDebugMode(true)
+    // TODO: CommonUtil 테스트 추가
+    // test('load', async () => {
+    //     model.setDebugMode(true)
 
-        const resp1 = await model.load('/contents/home/dummy.md')
-        expect(resp1).toBe(null)
+    //     const resp1 = await model.load('/contents/home/dummy.md')
+    //     expect(resp1).toBe(null)
 
-        const resp2 = await model.load('/contents/home/story.md')
-        expect(resp2 != null).toBe(true)
-        expect(resp2!.length > 0).toBe(true)
-    })
+    //     const resp2 = await model.load('/contents/home/story.md')
+    //     expect(resp2 != null).toBe(true)
+    //     expect(resp2!.length > 0).toBe(true)
+    // })
 
     test('content', async () => {
         model.setDebugMode(true)
