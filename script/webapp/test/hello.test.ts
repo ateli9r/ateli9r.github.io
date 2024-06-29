@@ -2,8 +2,9 @@ import { describe, expect, test } from '@jest/globals'
 import HelloModel from '../model/hello_model'
 
 describe('HelloModel 테스트', () => {
+    const model = new HelloModel()
+    
     test('hello', () => {
-        const model = new HelloModel()
         expect(model.hello()).toBe('Hello')
         expect(model.hello('')).toBe('Hello')
         expect(model.hello('World')).toBe('Hello, World')

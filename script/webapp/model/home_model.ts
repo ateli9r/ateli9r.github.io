@@ -16,16 +16,6 @@ export default class HomeModel {
     }
 
     /**
-     * markdown 텍스트 변환
-     * @param text markdown 텍스트
-     * @returns html 텍스트
-     */
-    parse(text: string): string {
-        const resp = marked.parse(text) as string
-        return resp.substring(0, resp.length-1)
-    }
-
-    /**
      * 컨텐츠 가져오기
      * @param contentId 컨텐츠 ID
      * @returns html 변환된 텍스트
@@ -33,6 +23,7 @@ export default class HomeModel {
     async content(contentId: string): Promise<string | null> {
         const resp = await CommonUtil.readData(`/contents/home/${contentId}.md`, this.debug)
         if (resp == null) return null
-        return this.parse(resp)
+        // return this.parse(resp)
+        return CommonUtil.parseMarkdown(resp)
     }
 }

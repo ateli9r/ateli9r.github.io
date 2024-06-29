@@ -10,8 +10,6 @@
 	</head>
 	<body class="is-preload">
 
-        <!-- https://html5up.net/ethereal -->
-
 		<!-- Page Wrapper -->
 			<div id="page-wrapper">
 
@@ -22,7 +20,7 @@
 								<div class="content color0 span-3-75">
 									<h1 class="major">HyonTak Lee</h1>
 									<p>
-										Senior Software Engineer<br>
+										Senior Software Engineer
 
 										<ul class="icons">
 											<li>
@@ -79,7 +77,7 @@
 											<tbody>
 												<tr v-for="item in attachData.items">
 													<td>{{ item.customer }}</td>
-													<td><div v-html="item.describe"></div></td>
+													<td v-html="item.describe"></td>
 													<td>{{ item.dates }}</td>
 												</tr>
 											</tbody>
@@ -98,7 +96,6 @@
 										<li><span class="icon fa-gem"><span class="label">Value</span></span></li>
 										<li><span class="icon solid fa-user"><span class="label">Human</span></span></li>
 									</ul>
-
 									<ol>
 										<li v-for="item in attachData.items">{{ item.text }}</li>
 									</ol>

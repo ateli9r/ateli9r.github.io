@@ -1,0 +1,7 @@
+text: 'text'
+number: 1234
+items:
+- field1: 'field1'
+  field2: 'field2'
+- field1: 'field1'
+  field2: 'field2'

@@ -2,8 +2,9 @@ import { describe, expect, test } from '@jest/globals'
 import CounterModel from '../model/counter_model'
 
 describe('CounterModel 테스트', () => {
+    const model = new CounterModel()
+    
     test('increase', () => {
-        const model = new CounterModel()
         expect(model.getCount()).toBe(0)
 
         model.increase()
