@@ -1,7 +1,6 @@
-import CounterApp from './counter_app'
-import HelloApp from './hello_app'
 import HomeApp from './home_app'
-import GalleryApp from './gallery_app'
+import CounterApp from './modal/counter_app'
+import HelloApp from './modal/hello_app'
 
 export default class App {
     /**
@@ -10,18 +9,17 @@ export default class App {
     private static instance: App
 
     /**
-     * 라우팅 맵
+     * 마지막 앱
      */
-    // private hashRoute: any = {
-    //     'home': new HomeApp(),
-    //     'counter': new CounterApp(),
-    //     'hello': new HelloApp(),
-    // }
+    private ctxApp: any
 
     /**
-     * 이전 라우팅키
+     * 라우팅 맵
      */
-    // private prevHashKey: string | null = null
+    private appRoute: any = {
+        'counter': new CounterApp(),
+        'hello': new HelloApp(),
+    }
 
     /**
      * 인스턴스 가져오기
@@ -41,44 +39,9 @@ export default class App {
         // 마우스 우클릭 금지
         document.oncontextmenu = () => { return false }
 
-        // 주소변경 감지
-        // window.addEventListener('hashchange', () => {
-        //     this.route(this.routeKey(window.location.hash) ?? 'home')
-        // })
-        // this.route(this.routeKey(window.location.hash) ?? 'home')
-
         // 홈 컨텐츠 불러오기
         this.loadHome()
     }
-
-    /**
-     * 라우팅키 가져오기
-     * @param locHash 주소 해시값
-     * @returns 라우팅키
-     */
-    // private routeKey(locHash: string): string | null {
-    //     if (locHash == '') locHash = '#/home'
-    //     if (locHash.length < 3) return null
-    //     if (locHash[0] != '#' || locHash[1] != '/') return null
-    //     return locHash.substring(2).toLowerCase()
-    // }
-
-    /**
-     * 라우팅
-     * @param routeKey 라우팅키
-     */
-    // private route(routeKey: string) {
-    //     if (this.prevHashKey != null) {
-    //         const prevCtx = this.hashRoute[this.prevHashKey]
-    //         prevCtx.app.unmount()
-    //     }
-
-    //     const ctxApp = this.hashRoute[routeKey]
-    //     if (ctxApp == null) return
-    //     ctxApp.create('#app')
-
-    //     this.prevHashKey = routeKey
-    // }
 
     /**
      * 홈 컨텐츠 불러오기
@@ -89,8 +52,23 @@ export default class App {
         home.render('#skill', true)
         home.render('#service', true)
         home.render('#values')
+        home.render('#portfolio')
+    }
 
-        const gallery = new GalleryApp()
-        gallery.render('#portfolio')
+    /**
+     * modal에 앱 불러오기
+     * @param appId appRoute에 지정된 key
+     */
+    public loadApp(appId: string) {
+        if (this.ctxApp != null) {
+            this.ctxApp.app.unmount()
+            this.ctxApp = null
+        }
+
+        const ctxApp = this.appRoute[appId]
+        if (ctxApp != null) {
+            ctxApp.create('.modal-body')
+            this.ctxApp = ctxApp
+        }
     }
 }

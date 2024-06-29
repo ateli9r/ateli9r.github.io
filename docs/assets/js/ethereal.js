@@ -641,26 +641,78 @@
 		}, 275);
 	}
 
+	var closeModal = function($modal) {
+
+		// var $modal = $(this),
+		var $modalImg = $modal.find('img');
+
+		// Locked? Bail.
+			if ($modal[0]._locked)
+				return;
+
+		// Already hidden? Bail.
+			if (!$modal.hasClass('visible'))
+				return;
+
+		// Stop propagation.
+			event.stopPropagation();
+
+		// Lock.
+			$modal[0]._locked = true;
+
+		// Clear visible, loaded.
+			$modal
+				.removeClass('loaded')
+
+		// Delay.
+			setTimeout(function() {
+
+				$modal
+					.removeClass('visible')
+
+				// Pause scroll zone.
+					$wrapper.triggerHandler('---pauseScrollZone');
+
+				setTimeout(function() {
+
+					// Clear src.
+						$modalImg.attr('src', '');
+
+					// Unlock.
+						$modal[0]._locked = false;
+
+					// Focus.
+						$body.focus();
+
+				}, 475);
+
+			}, 125);		
+	}
+
 	setTimeout(function() { // 24.06.29 vue 스크립트 보다 후순위로 실행
+
 		// Gallery.
 		$('.gallery')
 			.on('click', 'a', function(event) {
 				var $a = $(this),
 					$gallery = $a.parents('.gallery'),
 					$modal = $gallery.children('.modal'),
-					$body = $modal.find('.body'),
+					$mdlBody = $modal.find('.modal-body'),
 					$inner = $modal.find('.inner'),
 					$modalImg = $modal.find('img'),
 					href = $a.attr('href'),
 					modalType = $a.data('modal')
 					;
 
-				// Not an image? Bail.
-					if (modalType === undefined || modalType == 'none') return
+					// if (modalType === undefined || modalType == 'none') return;
 
 				// Prevent default.
 					event.preventDefault();
 					event.stopPropagation();
+
+				// Not an image? Bail.
+					if (href == '#') return;
+					if (modalType === undefined || modalType == 'none') return;
 
 				// Locked? Bail.
 					if ($modal[0]._locked)
@@ -669,23 +721,18 @@
 				// Lock.
 					$modal[0]._locked = true;
 
-				$body.addClass('hidden')
+				$mdlBody.addClass('hidden')
 				$inner.addClass('hidden');
 				
 				if (modalType == 'image') {
 					$inner.removeClass('hidden');
 					$modalImg.attr('src', href);
 				} else if (modalType == 'app') {
-					$body.removeClass('hidden');
+					$mdlBody.removeClass('hidden');
 
-					$body.html('');
-					$body.append('!!!');
-
-					try {
-						console.log(gitPage);
-					} catch (e) {
-						console.log(e);
-					}
+					const app = ateli9r.App.getInstance();
+					const appId = href.substring(1);
+					app.loadApp(appId);
 
 					setModalLoaded($modal);
 				}
@@ -705,9 +752,8 @@
 					}, 600);
 
 			})
-			.on('click', '.modal', function(event) {
-
-				var $modal = $(this),
+			.on('click', '.modal .close', function(event) {
+				var $modal = $(this).parent(),
 					$modalImg = $modal.find('img');
 
 				// Locked? Bail.
@@ -751,20 +797,20 @@
 						}, 475);
 
 					}, 125);
-
+					
 			})
 			.on('keypress', '.modal', function(event) {
 				var $modal = $(this);
 
 				// Escape? Hide modal.
 					if (event.keyCode == 27)
-						$modal.trigger('click');
+						$modal.find('.close').trigger('click');
 			})
 			.on('mouseup mousedown mousemove', '.modal', function(event) {
 				// Stop propagation.
 					event.stopPropagation();
 			})
-			.prepend('<div class="modal" tabIndex="-1"><div class="body"></div><div class="inner"><img src="" /></div></div>')
+			.prepend('<div class="modal" tabIndex="-1"><div class="close"></div><div class="modal-body"></div><div class="inner"><img src="" /></div></div>')
 				.find('img')
 					.on('load', function(event) {
 						var $modalImg = $(this),
