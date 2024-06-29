@@ -1,21 +1,14 @@
-const globule = require("globule")
+const globule = require("globule");
 const path = require("path");
 const { DefinePlugin } = require('webpack');
 
 module.exports = {
     mode: "development",
     entry: "./index.ts",
-    // entry: {
-    //     index: {
-    //         import: './index.ts',
-    //         dependOn: 'shared',
-    //     },
-    //     shared: 'lodash',
-    // },
     devtool: "inline-source-map",
     module: {
         rules: [
-            {test: /\.tsx?$/, use: "ts-loader", exclude: "/node_modules/"},
+            { test: /\.tsx?$/, use: "ts-loader", exclude: "/node_modules/" },
         ],
     },
     resolve: {
@@ -25,23 +18,9 @@ module.exports = {
         }
     },
     output: {
-        filename: "bundle.[name].js",
-        path: path.resolve(__dirname, "../../docs/assets/"),
-        library: "gitPage",
-        // clean: true,
-    },
-    optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-            // chunks: 'all',
-            cacheGroups: {
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    chunks: 'all',
-                }
-            }
-        },
+        filename: "app.js",
+        path: path.resolve(__dirname, "../../docs/assets/js/"),
+        library: "ateli9r",
     },
     plugins: [
         new DefinePlugin({
@@ -50,4 +29,4 @@ module.exports = {
             '__VUE_PROD_HYDRATION_MISMATCH_DETAILS__': JSON.stringify(false)
         })
     ]
-}
+};

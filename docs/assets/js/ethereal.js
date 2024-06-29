@@ -629,20 +629,34 @@
 						);
 
 			});
+	
+	var setModalLoaded = function($modal) {
+		setTimeout(function() {
+			// No longer visible? Bail.
+				if (!$modal.hasClass('visible'))
+					return;
 
-	// Gallery.
+			// Set loaded.
+				$modal.addClass('loaded');
+		}, 275);
+	}
+
+	setTimeout(function() { // 24.06.29 vue 스크립트 보다 후순위로 실행
+		// Gallery.
 		$('.gallery')
 			.on('click', 'a', function(event) {
-
 				var $a = $(this),
 					$gallery = $a.parents('.gallery'),
 					$modal = $gallery.children('.modal'),
+					$body = $modal.find('.body'),
+					$inner = $modal.find('.inner'),
 					$modalImg = $modal.find('img'),
-					href = $a.attr('href');
+					href = $a.attr('href'),
+					modalType = $a.data('modal')
+					;
 
 				// Not an image? Bail.
-					if (!href.match(/\.(jpg|gif|png|mp4)$/))
-						return;
+					if (modalType === undefined || modalType == 'none') return
 
 				// Prevent default.
 					event.preventDefault();
@@ -655,8 +669,26 @@
 				// Lock.
 					$modal[0]._locked = true;
 
-				// Set src.
+				$body.addClass('hidden')
+				$inner.addClass('hidden');
+				
+				if (modalType == 'image') {
+					$inner.removeClass('hidden');
 					$modalImg.attr('src', href);
+				} else if (modalType == 'app') {
+					$body.removeClass('hidden');
+
+					$body.html('');
+					$body.append('!!!');
+
+					try {
+						console.log(gitPage);
+					} catch (e) {
+						console.log(e);
+					}
+
+					setModalLoaded($modal);
+				}
 
 				// Set visible.
 					$modal.addClass('visible');
@@ -722,38 +754,24 @@
 
 			})
 			.on('keypress', '.modal', function(event) {
-
 				var $modal = $(this);
 
 				// Escape? Hide modal.
 					if (event.keyCode == 27)
 						$modal.trigger('click');
-
 			})
 			.on('mouseup mousedown mousemove', '.modal', function(event) {
-
 				// Stop propagation.
 					event.stopPropagation();
-
 			})
-			.prepend('<div class="modal" tabIndex="-1"><div class="inner"><img src="" /></div></div>')
+			.prepend('<div class="modal" tabIndex="-1"><div class="body"></div><div class="inner"><img src="" /></div></div>')
 				.find('img')
 					.on('load', function(event) {
-
 						var $modalImg = $(this),
 							$modal = $modalImg.parents('.modal');
 
-						setTimeout(function() {
-
-							// No longer visible? Bail.
-								if (!$modal.hasClass('visible'))
-									return;
-
-							// Set loaded.
-								$modal.addClass('loaded');
-
-						}, 275);
-
+							setModalLoaded($modal);
 					});
+	}, 1000);
 
 })(jQuery);

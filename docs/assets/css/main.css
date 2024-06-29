@@ -1955,6 +1955,12 @@ input, select, textarea {
 				opacity: 0;
 			}
 
+			.gallery .modal .body {
+				max-width: 90vw;
+				max-height: 85vh;
+				background: #fff;
+			}
+
 	@media screen and (max-width: 980px) {
 
 		.gallery .modal .inner img {
