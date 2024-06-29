@@ -1775,6 +1775,18 @@ input, select, textarea {
 		height: 100%;
 	}
 
+	.gallery .title {
+		z-index: 1;
+		position: absolute;
+		width: 100%;
+		text-align: center;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		color: #fff;
+		font-weight: bold;
+	}
+
 		.gallery > * {
 			width: 20rem;
 			height: 100%;

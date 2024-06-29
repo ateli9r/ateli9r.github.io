@@ -712,7 +712,7 @@
 
 				// Not an image? Bail.
 					if (href == '#') return;
-					if (modalType === undefined || modalType == 'none') return;
+					if (!(modalType == 'image' || modalType == 'app')) return;
 
 				// Locked? Bail.
 					if ($modal[0]._locked)

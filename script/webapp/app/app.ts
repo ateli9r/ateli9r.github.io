@@ -37,7 +37,7 @@ export default class App {
      */
     private initialize() {
         // 마우스 우클릭 금지
-        document.oncontextmenu = () => { return false }
+        // document.oncontextmenu = () => { return false }
 
         // 홈 컨텐츠 불러오기
         this.loadHome()
@@ -52,7 +52,7 @@ export default class App {
         home.render('#skill', true)
         home.render('#service', true)
         home.render('#values')
-        home.render('#portfolio')
+        home.render('#portfolio', true)
     }
 
     /**
