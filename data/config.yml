@@ -1,0 +1,8 @@
+# YAML 기능 테스트용
+text: 'text'
+number: 1234
+items: ['item1', 'item2']
+# -------------------------
+
+hello:
+  name: 'ateli9r'
