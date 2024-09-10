@@ -48,9 +48,10 @@ export default class App {
      * 파라미터 해석
      * @returns 
      */
-    private parseParams() {
+    private parseParams() : any {
         const url = window.location.href
         let sptUrl = url.split('?')
+        if (sptUrl.length != 2) return {}
         sptUrl = sptUrl[1].split('&')
 
         let params : any = {}
@@ -67,25 +68,14 @@ export default class App {
      * 파라미터 라우팅
      */
     private paramsRoute() {
-        // 앱 불러오기
-        App.getInstance().loadApp(this.parseParams().app)
-    }
-
-    /**
-     * 해시 라우팅
-     */
-    private hashRoute() {
-        const hash = window.location.hash
-        if (hash.indexOf('#/') == -1) {
-            window.location.hash = '#/home'
+        const params = this.parseParams()
+        if (!params.app) {
+            location.href = '/?app=home'
             return
         }
 
-        // 해시ID 추출
-        const hashId = hash.substring(2)
-
         // 앱 불러오기
-        App.getInstance().loadApp(hashId)
+        App.getInstance().loadApp(this.parseParams().app)
     }
 
     /**
