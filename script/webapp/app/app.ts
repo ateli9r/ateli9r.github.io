@@ -40,11 +40,35 @@ export default class App {
         // 마우스 우클릭 금지
         document.oncontextmenu = () => { return false }
 
-        // 해시 변경 이벤트 등록
-        window.addEventListener('hashchange', this.hashRoute)
+        // 파라미터 라우팅
+        this.paramsRoute()
+    }
 
-        // 해시 라우팅
-        this.hashRoute()
+    /**
+     * 파라미터 해석
+     * @returns 
+     */
+    private parseParams() {
+        const url = window.location.href
+        let sptUrl = url.split('?')
+        sptUrl = sptUrl[1].split('&')
+
+        let params : any = {}
+        for (var i = 0; i < sptUrl.length; i++) {
+            const spt = sptUrl[i].split('=')
+            const k = spt[0]
+            const v = decodeURIComponent(spt[1])
+            params[k] = v
+        }
+        return params
+    }
+
+    /**
+     * 파라미터 라우팅
+     */
+    private paramsRoute() {
+        // 앱 불러오기
+        App.getInstance().loadApp(this.parseParams().app)
     }
 
     /**
