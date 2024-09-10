@@ -1,0 +1,9 @@
+.home-image {
+    width: 470px;
+    height: 350px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
