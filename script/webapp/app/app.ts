@@ -1,6 +1,7 @@
 import CounterApp from './counter_app'
 import HelloApp from './hello_app'
 import HomeApp from './home_app'
+import PostsApp from './posts_app'
 
 export default class App {
     /**
@@ -18,6 +19,7 @@ export default class App {
      */
     private appRoute: any = {
         'home': new HomeApp(),
+        'posts': new PostsApp(),
         'counter': new CounterApp(),
         'hello': new HelloApp(),
     }
@@ -40,8 +42,26 @@ export default class App {
         // 마우스 우클릭 금지
         document.oncontextmenu = () => { return false }
 
+        // a 태그 라우팅 설정 - 메뉴
+        this.setAnchorRoute('#menu')
+
         // 파라미터 라우팅
         this.paramsRoute()
+    }
+
+    /**
+     * a 태그 라우팅 설정
+     */
+    private setAnchorRoute(selector: string) {
+        jQuery(selector).find('a').on('click', (e: Event) => {
+            e.preventDefault()
+
+            const a = jQuery(e.target as HTMLElement)
+            const state = {url: a.attr('href')}
+            history.pushState(state, '', state.url)
+
+            this.paramsRoute()
+        })
     }
 
     /**
@@ -74,8 +94,11 @@ export default class App {
             return
         }
 
+        // 같은 앱은 다시 요청 하지 않음
+        if (this.ctxApp != null && this.ctxApp == this.appRoute[params.app]) return
+
         // 앱 불러오기
-        App.getInstance().loadApp(this.parseParams().app)
+        App.getInstance().loadApp(params.app)
     }
 
     /**
