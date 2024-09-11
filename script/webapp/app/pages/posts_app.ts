@@ -1,5 +1,5 @@
 import { createApp, onMounted, ref, computed, h } from 'vue'
-import CommonUtil from '../util/common'
+import CommonUtil from '../../util/common'
 
 /**
  * 
@@ -13,7 +13,7 @@ export default class PostsApp {
      */
     async create(selector: string) {
         this.app = createApp({
-            template: await CommonUtil.templateHTML('posts'),
+            template: await CommonUtil.templateHTML('pages/posts'),
         })
 
         this.app.mount(selector)

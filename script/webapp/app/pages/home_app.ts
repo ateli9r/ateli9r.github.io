@@ -1,5 +1,5 @@
 import { createApp, onMounted, ref, computed, h } from 'vue'
-import CommonUtil from '../util/common'
+import CommonUtil from '../../util/common'
 
 /**
  * 
@@ -13,7 +13,7 @@ export default class HomeApp {
      */
     async create(selector: string) {
         this.app = createApp({
-            template: await CommonUtil.templateHTML('home'),
+            template: await CommonUtil.templateHTML('pages/home'),
         })
 
         this.app.mount(selector)

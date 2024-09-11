@@ -1,7 +1,8 @@
-import CounterApp from './counter_app'
-import HelloApp from './hello_app'
-import HomeApp from './home_app'
-import PostsApp from './posts_app'
+import CounterApp from './sample/counter_app'
+import HelloApp from './sample/hello_app'
+import HomeApp from './pages/home_app'
+import PostsApp from './pages/posts_app'
+import MenuApp from './layouts/menu_app'
 
 export default class App {
     /**
@@ -25,6 +26,13 @@ export default class App {
     }
 
     /**
+     * 레이아웃 앱
+     */
+    private appLayout: any = {
+        'menu': new MenuApp(),
+    }
+
+    /**
      * 인스턴스 가져오기
      */
     static getInstance() {
@@ -42,8 +50,11 @@ export default class App {
         // 마우스 우클릭 금지
         document.oncontextmenu = () => { return false }
 
+        // 
+        this.appLayout['menu'].create('#menu')
+
         // a 태그 라우팅 설정 - 메뉴
-        this.setAnchorRoute('#menu')
+        setTimeout(() => { this.setAnchorRoute('#menu') }, 500)
 
         // 파라미터 라우팅
         this.paramsRoute()

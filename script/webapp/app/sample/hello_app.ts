@@ -1,6 +1,6 @@
 import { createApp, onMounted, ref, computed, h } from 'vue'
-import CommonUtil from '../util/common'
-import HelloModel from '../model/hello_model'
+import CommonUtil from '../../util/common'
+import HelloModel from '../../model/hello_model'
 
 /**
  * 인사말 앱
@@ -47,7 +47,7 @@ export default class HelloApp {
                     return model.hello(this.name)
                 }
             },
-            template: await CommonUtil.templateHTML('hello'),
+            template: await CommonUtil.templateHTML('sample/hello'),
         })
 
         this.app.mount(selector)

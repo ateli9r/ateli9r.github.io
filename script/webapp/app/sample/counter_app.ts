@@ -1,6 +1,6 @@
 import { createApp, onMounted, ref } from 'vue'
-import CommonUtil from '../util/common'
-import CounterModel from '../model/counter_model'
+import CommonUtil from '../../util/common'
+import CounterModel from '../../model/counter_model'
 
 /**
  * 카운터 앱
@@ -52,7 +52,7 @@ export default class CounterApp {
                     incButton,
                 }
             },
-            template: await CommonUtil.templateHTML('counter'),
+            template: await CommonUtil.templateHTML('sample/counter'),
         })
 
         this.app.mount(selector)
